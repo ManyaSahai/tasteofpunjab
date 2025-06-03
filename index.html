@@ -961,84 +961,14 @@
 							</button>
 						</div>
 					</section>
+					<!DOCTYPE html>
+					<html>
 
-					<section id="home-overview">
-						<div id="home-overview__video" class="slideshow-container">
-							<img class="fade-slide" src="jpeg/JPEG/Carousel image -1.jpg"
-								alt="Cocktail Hour on the veranda">
-							<img class="fade-slide" src="jpeg/JPEG/Carousel image -2.jpg" alt="Dinner by the beach">
-							<img class="fade-slide" src="jpeg/JPEG/Carousel image -5.jpg" alt="Sunset views">
-						</div>
-
-						<div id="home-overview__text">
-							<div id="home-overview__text__line"></div>
-							<strong class="label">Who We Are</strong>
-							<h2 class="h2-style">Punjabi Tradition with Modern Hospitality.</h2>
-							<p>Perched atop Powai with stunning skyline views, Taste of Punjab is a rooftop restaurant
-								that
-								offers authentic Punjabi cuisine, vibrant ambiance, and a well-stocked bar — making it
-								the
-								perfect setting for both relaxed meals and festive occasions. Our rooftop banquet,
-								Antariksh,
-								provides an elegant venue for tying the knot or hosting celebrations under the open sky.
-							</p>
-							<p>Rooted in the richness of Punjabi culture, our team is committed to creating seamless and
-								memorable
-								experiences for every guest. From private parties to festive gatherings, we ensure every
-								detail is thoughtfully
-								executed. Our expert chefs serve vibrant, traditional dishes with a contemporary twist,
-								complemented
-								by a welcoming atmosphere and personalized service.</p>
-						</div>
-					</section>
-					<script>
-						document.addEventListener("DOMContentLoaded", function () {
-							const slides = document.querySelectorAll(".fade-slide");
-							let currentIndex = 0;
-
-							function showSlide(index) {
-								slides.forEach((slide, i) => {
-									slide.style.opacity = i === index ? 1 : 0;
-								});
-							}
-
-							function nextSlide() {
-								currentIndex = (currentIndex + 1) % slides.length;
-								showSlide(currentIndex);
-							}
-
-							showSlide(currentIndex);
-							setInterval(nextSlide, 3000); // Change slide every 3 seconds
-						});
-					</script>
-
-					<section class="venue-row">
-						<div class="venue-row__image">
-							<div class="carousel-wrapper">
-								<div class="carousel-fade">
-									<img class="carousel-slide active" src="jpeg/TOP BLACK.png" alt="Slide 1">
-									<img class="carousel-slide" src="jpeg/JPEG/Carousel image -10.jpg" alt="Slide 2">
-									<img class="carousel-slide" src="jpeg/JPEG/Carousel image -7.jpg" alt="Slide 3">
-									<img class="carousel-slide" src="jpeg/JPEG/Carousel image -6.jpg" alt="Slide 4">
-									<img class="carousel-slide" src="jpeg/JPEG/DSC00096.JPG" alt="Slide 5">
-									<img class="carousel-slide" src="jpeg/JPEG/DSC00121.JPG" alt="Slide 6">
-								</div>
-								<button class="carousel-prev">&#10094;</button>
-								<button class="carousel-next">&#10095;</button>
-							</div>
-						</div>
-
-						<div class="venue-row__text">
-							<h2 class="h1-style">Antariksh</h2>
-							<p class="venue-subtitle">Celebrations between the skies</p>
-							<a class="lrg-button" href="venues/pier-sixty/index.html">Venue Details<span>for Pier
-									Sixty</span></a>
-						</div>
-
+					<head>
 						<style>
+							/* Existing styles */
 							.venue-row__text p {
 								font-weight: bold;
-								/* Makes text bold */
 								padding-top: 0;
 							}
 
@@ -1050,61 +980,35 @@
 								line-height: 1.4;
 							}
 
-							.carousel-wrapper {
-								position: relative;
-								width: auto;
-
+							.carousel-slide,
+							.fade-slide {
+								position: absolute;
+								opacity: 0;
+								transition: opacity 0.8s ease !important;
+								width: 100%;
 								height: auto;
+								will-change: opacity;
+							}
+
+							.carousel-wrapper,
+							.slideshow-container {
+								position: relative;
 								overflow: hidden;
-								background-color: #f5f5f5;
+								min-height: 300px;
+								/* Adjust based on your content */
 							}
 
 							img {
 								max-width: 100%;
-								/* Ensures image does not exceed its container */
 								height: auto;
-								/* Maintains aspect ratio */
 								display: block;
-								/* Prevents inline spacing issues */
 							}
 
-							/* Specific styles for smaller screens */
-							@media (max-width: 768px) {
-								.carousel-container {
-									width: 100%;
-									height: auto;
-								}
-
-								.carousel-slide {
-									width: 100%;
-									height: auto;
-									object-fit: cover;
-								}
-							}
-
-							.carousel-slide {
-								position: absolute;
-								width: 100%;
-								height: 100%;
-								top: 0;
-								left: 0;
-								opacity: 0;
-								transition: opacity 2s ease-in-out;
-								object-fit: fill;
-								z-index: 1;
-
-							}
-
-							.carousel-slide.active {
-								opacity: 1;
-								z-index: 2;
-							}
-
+							/* Navigation buttons */
 							.carousel-prev,
 							.carousel-next {
 								position: absolute;
 								top: 50%;
-								transform: translateY(-50%);
 								background-color: rgba(0, 0, 0, 0.5);
 								color: white;
 								border: none;
@@ -1120,156 +1024,388 @@
 							.carousel-next {
 								right: 0;
 							}
-						</style>
 
-						<script>
-							document.addEventListener("DOMContentLoaded", function () {
-								let currentIndex = 0;
-								const slides = document.querySelectorAll(".carousel-slide");
-								const totalSlides = slides.length;
-
-								function showSlide(index) {
-									slides.forEach((slide, i) => {
-										slide.classList.remove("active");
-										if (i === index) slide.classList.add("active");
-									});
+							/* Responsive adjustments */
+							@media (max-width: 768px) {
+								.carousel-container {
+									width: 100%;
+									height: auto;
 								}
 
-								document.querySelector(".carousel-next").addEventListener("click", () => {
-									currentIndex = (currentIndex + 1) % totalSlides;
-									showSlide(currentIndex);
+								.carousel-slide {
+									width: 100%;
+									height: auto;
+									object-fit: cover;
+								}
+							}
+						</style>
+					</head>
+
+					<body>
+						<!DOCTYPE html>
+						<html>
+
+						<head>
+							<style>
+								/* Your original styles - only changed class names */
+								.venue-row__text p {
+									font-weight: bold;
+									padding-top: 0;
+								}
+
+								.venue-row__text .venue-subtitle {
+									font-size: 1rem;
+									margin-top: 0.5rem;
+									margin-bottom: 1rem;
+									color: #999;
+									line-height: 1.4;
+								}
+
+								/* First Section - Home Overview */
+								.fade-slide {
+									position: absolute;
+									opacity: 0;
+									transition: opacity 0.8s ease !important;
+									width: 100%;
+									height: auto;
+									will-change: opacity;
+								}
+
+								.slideshow-container {
+									position: relative;
+									overflow: hidden;
+									min-height: 300px;
+								}
+
+								/* Second Section - Antariksh */
+								.carousel-slide-antariksh {
+									position: absolute;
+									opacity: 0;
+									transition: opacity 0.8s ease !important;
+									width: 100%;
+									height: auto;
+									will-change: opacity;
+								}
+
+								.carousel-wrapper-antariksh {
+									position: relative;
+									overflow: hidden;
+									min-height: 300px;
+								}
+
+								img {
+									max-width: 100%;
+									height: auto;
+									display: block;
+								}
+
+								/* Navigation buttons for Antariksh */
+								.carousel-prev-antariksh,
+								.carousel-next-antariksh {
+									position: absolute;
+									top: 50%;
+									background-color: rgba(0, 0, 0, 0.5);
+									color: white;
+									border: none;
+									padding: 1rem;
+									cursor: pointer;
+									z-index: 3;
+								}
+
+								.carousel-prev-antariksh {
+									left: 0;
+								}
+
+								.carousel-next-antariksh {
+									right: 0;
+								}
+
+								/* Third Section - Restaurant */
+								.carousel-container-restaurant {
+									position: relative;
+									width: 100%;
+									height: 0;
+									padding-bottom: 75%;
+									overflow: hidden;
+								}
+
+								.carousel-slide-restaurant {
+									position: absolute;
+									top: 0;
+									left: 0;
+									width: 100%;
+									height: 100%;
+									object-fit: cover;
+									opacity: 0;
+									transition: opacity 1s ease-in-out;
+								}
+
+								.carousel-slide-restaurant.active {
+									opacity: 1;
+								}
+
+								/* Your original responsive styles */
+								@media (max-width: 768px) {
+									.carousel-container-restaurant {
+										padding-bottom: 85%;
+									}
+								}
+
+								@media (max-width: 480px) {
+									.carousel-container-restaurant {
+										padding-bottom: 100%;
+									}
+								}
+							</style>
+						</head>
+
+						<body>
+							<!-- First Section - Home Overview -->
+							<section id="home-overview">
+								<div id="home-overview__video" class="slideshow-container">
+									<img class="fade-slide" src="jpeg/JPEG/Carousel image -1.jpg"
+										alt="Cocktail Hour on the veranda">
+									<img class="fade-slide" src="jpeg/JPEG/Carousel image -2.jpg"
+										alt="Dinner by the beach">
+									<img class="fade-slide" src="jpeg/JPEG/Carousel image -5.jpg" alt="Sunset views">
+								</div>
+
+								<div id="home-overview__text">
+									<div id="home-overview__text__line"></div>
+									<strong class="label">Who We Are</strong>
+									<h2 class="h2-style">Punjabi Tradition with Modern Hospitality.</h2>
+									<p>Perched atop Powai with stunning skyline views, Taste of Punjab is a rooftop
+										restaurant
+										that offers authentic Punjabi cuisine, vibrant ambiance, and a well-stocked bar
+										—
+										making it
+										the perfect setting for both relaxed meals and festive occasions.</p>
+								</div>
+							</section>
+
+							<!-- Second Section - Antariksh -->
+							<section class="venue-row">
+								<div class="venue-row__image">
+									<div class="carousel-wrapper-antariksh">
+										<div class="carousel-fade">
+											<img class="carousel-slide-antariksh" src="jpeg/TOP BLACK.png"
+												alt="Slide 1">
+											<img class="carousel-slide-antariksh" src="jpeg/JPEG/Carousel image -10.jpg"
+												alt="Slide 2">
+											<img class="carousel-slide-antariksh" src="jpeg/JPEG/Carousel image -7.jpg"
+												alt="Slide 3">
+											<img class="carousel-slide-antariksh" src="jpeg/JPEG/Carousel image -6.jpg"
+												alt="Slide 4">
+											<img class="carousel-slide-antariksh" src="jpeg/JPEG/DSC00096.JPG"
+												alt="Slide 5">
+											<img class="carousel-slide-antariksh" src="jpeg/JPEG/DSC00121.JPG"
+												alt="Slide 6">
+										</div>
+										<button class="carousel-prev-antariksh">&#10094;</button>
+										<button class="carousel-next-antariksh">&#10095;</button>
+									</div>
+								</div>
+
+								<div class="venue-row__text">
+									<h2 class="h1-style">Antariksh</h2>
+									<p class="venue-subtitle">Celebrations between the skies</p>
+									<a class="lrg-button" href="venues/pier-sixty/index.html">Venue Details</a>
+								</div>
+							</section>
+
+							<!-- Third Section - Restaurant -->
+							<section class="venue-row">
+								<div class="venue-row__image">
+									<div class="carousel-container-restaurant">
+										<img class="carousel-slide-restaurant active" src="jpeg/JPEG/DSC09476.JPG"
+											alt="Venue 1">
+										<img class="carousel-slide-restaurant" src="jpeg/JPEG/DSC09279.JPG"
+											alt="Venue 2">
+										<img class="carousel-slide-restaurant" src="jpeg/JPEG/DSC09227.JPG"
+											alt="Venue 3">
+										<img class="carousel-slide-restaurant" src="jpeg/JPEG/DSC00188.JPG"
+											alt="Venue 4">
+										<img class="carousel-slide-restaurant" src="jpeg/JPEG/Carousel image -1.jpg"
+											alt="Venue 5">
+									</div>
+								</div>
+								<div class="venue-row__text">
+									<img class="venue-row__text__img lazyload"
+										src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+										alt="Lighthouse banner image" aria-hidden="true"
+										data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200243/The-Lighthouse.png"
+										decoding="async" />
+									<h2 class="h1-style">The Restaurant</h2>
+									<a class="lrg-button" href="venues/the-lighthouse/index.html">View More<span>for The
+											Lighthouse</span></a>
+								</div>
+							</section>
+
+							<script>
+								document.addEventListener("DOMContentLoaded", function () {
+									// First Carousel (Home Overview)
+									const homeSlides = document.querySelectorAll(".fade-slide");
+									let homeCurrentIndex = 0;
+									const homeTotalSlides = homeSlides.length;
+									let homeInterval;
+
+									function showHomeSlide(index) {
+										homeSlides.forEach((slide, i) => {
+											slide.style.opacity = i === index ? 1 : 0;
+										});
+									}
+
+									function nextHomeSlide() {
+										homeCurrentIndex = (homeCurrentIndex + 1) % homeTotalSlides;
+										showHomeSlide(homeCurrentIndex);
+									}
+
+									function startHomeCarousel() {
+										homeInterval = setInterval(nextHomeSlide, 3000);
+									}
+
+									// Initialize first carousel
+									showHomeSlide(0);
+									startHomeCarousel();
+
+									// Second Carousel (Antariksh)
+									const antariksSlides = document.querySelectorAll(".carousel-slide-antariksh");
+									let antariksCurrentIndex = 0;
+									const antariksTotalSlides = antariksSlides.length;
+									let antariksInterval;
+
+									function showAntariksSlide(index) {
+										antariksSlides.forEach((slide, i) => {
+											slide.style.opacity = i === index ? 1 : 0;
+										});
+									}
+
+									function nextAntariksSlide() {
+										antariksCurrentIndex = (antariksCurrentIndex + 1) % antariksTotalSlides;
+										showAntariksSlide(antariksCurrentIndex);
+									}
+
+									function startAntariksCarousel() {
+										antariksInterval = setInterval(nextAntariksSlide, 3000);
+									}
+
+									// Initialize second carousel
+									showAntariksSlide(0);
+									startAntariksCarousel();
+
+									// Navigation buttons for Antariksh carousel
+									document.querySelector(".carousel-next-antariksh").addEventListener("click", () => {
+										clearInterval(antariksInterval);
+										nextAntariksSlide();
+										startAntariksCarousel();
+									});
+
+									document.querySelector(".carousel-prev-antariksh").addEventListener("click", () => {
+										clearInterval(antariksInterval);
+										antariksCurrentIndex = (antariksCurrentIndex - 1 + antariksTotalSlides) % antariksTotalSlides;
+										showAntariksSlide(antariksCurrentIndex);
+										startAntariksCarousel();
+									});
+
+									// Third Carousel (Restaurant)
+									const restaurantSlides = document.querySelectorAll(".carousel-slide-restaurant");
+									let restaurantCurrentIndex = 0;
+									const restaurantTotalSlides = restaurantSlides.length;
+
+									function showRestaurantSlide() {
+										restaurantSlides.forEach((slide, i) => {
+											slide.classList.toggle("active", i === restaurantCurrentIndex);
+										});
+									}
+
+									function nextRestaurantSlide() {
+										restaurantSlides[restaurantCurrentIndex].classList.remove("active");
+										restaurantCurrentIndex = (restaurantCurrentIndex + 1) % restaurantTotalSlides;
+										restaurantSlides[restaurantCurrentIndex].classList.add("active");
+									}
+
+									// Initialize third carousel
+									showRestaurantSlide();
+									setInterval(nextRestaurantSlide, 3000);
 								});
+							</script>
+						</body>
 
-								document.querySelector(".carousel-prev").addEventListener("click", () => {
-									currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-									showSlide(currentIndex);
-								});
-
-								setInterval(() => {
-									currentIndex = (currentIndex + 1) % totalSlides;
-									showSlide(currentIndex);
-								}, 4000);
-							});
-						</script>
-					</section>
+						</html>
 
 
-
-					<section class="venue-row">
-						<div class="venue-row__image">
-							<div><img width="1734" height="1298"
-									src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABsYAAAUSAQAAAACSwnktAAAAAnRSTlMAAHaTzTgAAAEpSURBVHja7cEBDQAAAMKg909tDjegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP4NUZAAAUwlqmMAAAAASUVORK5CYII="
-									class="attachment-post-thumbnail size-post-thumbnail wp-post-image lazyload"
-									alt="The Lighthouse, Pier 61 Wedding Altar and view of Jersey City" decoding="async"
-									data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM.jpg"
-									data-srcset="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM.jpg 1734w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-300x225.jpg 300w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-1024x767.jpg 1024w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-768x575.jpg 768w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-1536x1150.jpg 1536w"
-									data-sizes="auto" data-eio-rwidth="1734" data-eio-rheight="1298" /><noscript><img
-										width="1734" height="1298"
-										src="../pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%e2%80%afAM.jpg"
-										class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-										alt="The Lighthouse, Pier 61 Wedding Altar and view of Jersey City"
-										decoding="async"
-										srcset="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM.jpg 1734w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-300x225.jpg 300w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-1024x767.jpg 1024w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-768x575.jpg 768w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2024/12/24192931/Screenshot-2024-12-24-at-10.42.32%E2%80%AFAM-1536x1150.jpg 1536w"
-										sizes="(max-width: 1734px) 100vw, 1734px" data-eio="l" /></noscript></div>
-						</div>
-						<div class="venue-row__text">
-							<img class="venue-row__text__img lazyload"
-								src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-								alt="Lighthouse banner image that spells out the lighthouse in large light grey font"
-								aria-hidden="true"
-								data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200243/The-Lighthouse.png"
-								decoding="async" /><noscript><img class="venue-row__text__img"
-									src="../pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200243/The-Lighthouse.png"
-									alt="Lighthouse banner image that spells out the lighthouse in large light grey font"
-									aria-hidden="true" data-eio="l" /></noscript>
-							<h2 class="h1-style">The Restaurant</h2>
-							<a class="lrg-button" href="venues/the-lighthouse/index.html">View More<span>for The
-									Lighthouse</span></a>
-						</div>
-					</section>
-
-
-					<section class="venue-row">
-						<div class="venue-row__image">
-							<div><img width="1334" height="2000"
-									src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABTYAAAeAAQAAAADcXTXUAAAAAnRSTlMAAHaTzTgAAAFPSURBVHja7cExAQAAAMKg9U9tB2+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4DfsPAABv1iGcAAAAABJRU5ErkJggg=="
-									class="attachment-post-thumbnail size-post-thumbnail wp-post-image lazyload"
-									alt="Current in daylight for a Mitzvah" decoding="async"
-									data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg"
-									data-srcset="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg 1334w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-200x300.jpg 200w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-683x1024.jpg 683w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-768x1152.jpg 768w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1024x1536.jpg 1024w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1365x2048.jpg 1365w"
-									data-sizes="auto" data-eio-rwidth="1334" data-eio-rheight="2000" /><noscript><img
-										width="1334" height="2000"
-										src="../pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg"
-										class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+						<section class="venue-row">
+							<div class="venue-row__image">
+								<div><img width="1334" height="2000"
+										src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABTYAAAeAAQAAAADcXTXUAAAAAnRSTlMAAHaTzTgAAAFPSURBVHja7cExAQAAAMKg9U9tB2+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4DfsPAABv1iGcAAAAABJRU5ErkJggg=="
+										class="attachment-post-thumbnail size-post-thumbnail wp-post-image lazyload"
 										alt="Current in daylight for a Mitzvah" decoding="async"
-										srcset="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg 1334w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-200x300.jpg 200w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-683x1024.jpg 683w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-768x1152.jpg 768w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1024x1536.jpg 1024w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1365x2048.jpg 1365w"
-										sizes="(max-width: 1334px) 100vw, 1334px" data-eio="l" /></noscript></div>
-						</div>
-						<div class="venue-row__text">
-							<img class="venue-row__text__img lazyload"
-								src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-								alt="Current banner image that spells out current in large grey font" aria-hidden="true"
-								data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200244/Current.png"
-								decoding="async" /><noscript><img class="venue-row__text__img"
-									src="../pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200244/Current.png"
+										data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg"
+										data-srcset="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg 1334w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-200x300.jpg 200w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-683x1024.jpg 683w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-768x1152.jpg 768w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1024x1536.jpg 1024w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1365x2048.jpg 1365w"
+										data-sizes="auto" data-eio-rwidth="1334"
+										data-eio-rheight="2000" /><noscript><img width="1334" height="2000"
+											src="../pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg"
+											class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+											alt="Current in daylight for a Mitzvah" decoding="async"
+											srcset="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-scaled.jpg 1334w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-200x300.jpg 200w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-683x1024.jpg 683w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-768x1152.jpg 768w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1024x1536.jpg 1024w, https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2021/08/26195731/Current-Mitzvahs-282-1365x2048.jpg 1365w"
+											sizes="(max-width: 1334px) 100vw, 1334px" data-eio="l" /></noscript></div>
+							</div>
+							<div class="venue-row__text">
+								<img class="venue-row__text__img lazyload"
+									src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 									alt="Current banner image that spells out current in large grey font"
-									aria-hidden="true" data-eio="l" /></noscript>
-							<h2 class="h1-style">Current</h2>
-							<a class="lrg-button" href="venues/current/index.html">Venue Details<span>for
-									Current</span></a>
-						</div>
-					</section>
+									aria-hidden="true"
+									data-src="https://pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200244/Current.png"
+									decoding="async" /><noscript><img class="venue-row__text__img"
+										src="../pier-sixty.s3.amazonaws.com/wp-content/uploads/2019/09/26200244/Current.png"
+										alt="Current banner image that spells out current in large grey font"
+										aria-hidden="true" data-eio="l" /></noscript>
+								<h2 class="h1-style">Current</h2>
+								<a class="lrg-button" href="venues/current/index.html">Venue Details<span>for
+										Current</span></a>
+							</div>
+						</section>
 
 
-					<section id="home-instagram">
-						<strong class="label">Instagram</strong>
-						<h2 class="h2-style">
-							<a href="https://www.instagram.com/thepiersixtycollection/" target="_blank"
-								title="Opens in a new tab or window" rel="noreferrer noopener">
-								<span>Instagram</span>
-								@thepiersixtycollection
-								<span class="viz-hide">(opens new window)</span>
-							</a>
-						</h2>
-						<small>(Links open in new window)</small>
+						<section id="home-instagram">
+							<strong class="label">Instagram</strong>
+							<h2 class="h2-style">
+								<a href="https://www.instagram.com/thepiersixtycollection/" target="_blank"
+									title="Opens in a new tab or window" rel="noreferrer noopener">
+									<span>Instagram</span>
+									@thepiersixtycollection
+									<span class="viz-hide">(opens new window)</span>
+								</a>
+							</h2>
+							<small>(Links open in new window)</small>
 
-						<div id="sb_instagram" class="sbi sbi_mob_col_2 sbi_tab_col_4 sbi_col_4 sbi_width_resp"
-							style="padding-bottom: 10px;" data-feedid="*2" data-res="auto" data-cols="4"
-							data-colsmobile="2" data-colstablet="4" data-num="4" data-nummobile="4"
-							data-item-padding="5" data-shortcode-atts="{&quot;feed&quot;:&quot;2&quot;}"
-							data-postid="49" data-locatornonce="49e1ad15c6" data-imageaspectratio="1:1"
-							data-sbi-flags="favorLocal">
+							<div id="sb_instagram" class="sbi sbi_mob_col_2 sbi_tab_col_4 sbi_col_4 sbi_width_resp"
+								style="padding-bottom: 10px;" data-feedid="*2" data-res="auto" data-cols="4"
+								data-colsmobile="2" data-colstablet="4" data-num="4" data-nummobile="4"
+								data-item-padding="5" data-shortcode-atts="{&quot;feed&quot;:&quot;2&quot;}"
+								data-postid="49" data-locatornonce="49e1ad15c6" data-imageaspectratio="1:1"
+								data-sbi-flags="favorLocal">
 
-							<div id="sbi_images" style="gap: 10px;">
-								<div class="sbi_item sbi_type_carousel sbi_new sbi_transition"
-									id="sbi_18093851449569820" data-date="1746283312">
-									<div class="sbi_photo_wrap">
-										<a class="sbi_photo" href="https://www.instagram.com/p/DJMfU5wxMZQ/"
-											target="_blank" rel="noopener nofollow"
-											data-full-res="https://scontent-ord5-3.cdninstagram.com/v/t51.75761-15/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=100&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&#038;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-3.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&#038;oe=68208836"
-											data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;}">
-											<span class="sbi-screenreader">A radiant bride, a breathtaking design, and a
-												sett</span>
-											<svg class="svg-inline--fa fa-clone fa-w-16 sbi_lightbox_carousel_icon"
-												aria-hidden="true" aria-label="Clone" data-fa-proƒcessed=""
-												data-prefix="far" data-icon="clone" role="img"
-												xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-												<path fill="currentColor"
-													d="M464 0H144c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h320c26.51 0 48-21.49 48-48v-48h48c26.51 0 48-21.49 48-48V48c0-26.51-21.49-48-48-48zM362 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h42v224c0 26.51 21.49 48 48 48h224v42a6 6 0 0 1-6 6zm96-96H150a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h308a6 6 0 0 1 6 6v308a6 6 0 0 1-6 6z">
-												</path>
-											</svg> <img
-												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
-												alt="A radiant bride, a breathtaking design, and a setting to match. Visions Decor brought this wedding to life with romantic florals and elegant candelabra tablescapes that perfectly complemented our venue’s timeless charm.
-
-Event Design &amp; Floral Decor: @visionsdecor
-Photography: @afrikarmando
-Venue: @thepiersixtycollection
-
-#ThePierSixtyCollection #LuxuryWeddings #NYCEvents #NewYorkWeddings #FloralDesign #WeddingDecor #TablescapeDesign #CandelabraDecor #WeddingInspiration #ElegantEvents #WeddingAesthetic #HudsonRiverViews #EventDesign #NYCVenues #FloralArt #BridalStyle #WeddingGoals"
-												data-src="https://piersixty.com/wp-content/plugins/instagram-feed/img/placeholder.png"
-												decoding="async" class="lazyload" data-eio-rwidth="1000"
-												data-eio-rheight="560"><noscript><img
-													src="wp-content/plugins/instagram-feed/img/placeholder.png"
+								<div id="sbi_images" style="gap: 10px;">
+									<div class="sbi_item sbi_type_carousel sbi_new sbi_transition"
+										id="sbi_18093851449569820" data-date="1746283312">
+										<div class="sbi_photo_wrap">
+											<a class="sbi_photo" href="https://www.instagram.com/p/DJMfU5wxMZQ/"
+												target="_blank" rel="noopener nofollow"
+												data-full-res="https://scontent-ord5-3.cdninstagram.com/v/t51.75761-15/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=100&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&#038;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-3.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&#038;oe=68208836"
+												data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/494763660_18500390908050366_4332354926662433585_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=XiJC_qUnAlgQ7kNvwHSiB-T&amp;_nc_oc=AdnctjByaGqz3vstGT-FQNgQ9eCbWTd4QMX7KASbLrn9T7HuiMfnqxq1ucyUvpbuXWI&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKxU96L3_JVwog7sri1d8RQRsPlNi_HF5fd7InH1FuVvQ&amp;oe=68208836&quot;}">
+												<span class="sbi-screenreader">A radiant bride, a breathtaking design,
+													and a
+													sett</span>
+												<svg class="svg-inline--fa fa-clone fa-w-16 sbi_lightbox_carousel_icon"
+													aria-hidden="true" aria-label="Clone" data-fa-proƒcessed=""
+													data-prefix="far" data-icon="clone" role="img"
+													xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+													<path fill="currentColor"
+														d="M464 0H144c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h320c26.51 0 48-21.49 48-48v-48h48c26.51 0 48-21.49 48-48V48c0-26.51-21.49-48-48-48zM362 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h42v224c0 26.51 21.49 48 48 48h224v42a6 6 0 0 1-6 6zm96-96H150a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h308a6 6 0 0 1 6 6v308a6 6 0 0 1-6 6z">
+													</path>
+												</svg> <img
+													src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
 													alt="A radiant bride, a breathtaking design, and a setting to match. Visions Decor brought this wedding to life with romantic florals and elegant candelabra tablescapes that perfectly complemented our venue’s timeless charm.
 
 Event Design &amp; Floral Decor: @visionsdecor
@@ -1277,30 +1413,41 @@ Photography: @afrikarmando
 Venue: @thepiersixtycollection
 
 #ThePierSixtyCollection #LuxuryWeddings #NYCEvents #NewYorkWeddings #FloralDesign #WeddingDecor #TablescapeDesign #CandelabraDecor #WeddingInspiration #ElegantEvents #WeddingAesthetic #HudsonRiverViews #EventDesign #NYCVenues #FloralArt #BridalStyle #WeddingGoals"
-													data-eio="l"></noscript>
-										</a>
+													data-src="https://piersixty.com/wp-content/plugins/instagram-feed/img/placeholder.png"
+													decoding="async" class="lazyload" data-eio-rwidth="1000"
+													data-eio-rheight="560"><noscript><img
+														src="wp-content/plugins/instagram-feed/img/placeholder.png"
+														alt="A radiant bride, a breathtaking design, and a setting to match. Visions Decor brought this wedding to life with romantic florals and elegant candelabra tablescapes that perfectly complemented our venue’s timeless charm.
+
+Event Design &amp; Floral Decor: @visionsdecor
+Photography: @afrikarmando
+Venue: @thepiersixtycollection
+
+#ThePierSixtyCollection #LuxuryWeddings #NYCEvents #NewYorkWeddings #FloralDesign #WeddingDecor #TablescapeDesign #CandelabraDecor #WeddingInspiration #ElegantEvents #WeddingAesthetic #HudsonRiverViews #EventDesign #NYCVenues #FloralArt #BridalStyle #WeddingGoals"
+														data-eio="l"></noscript>
+											</a>
+										</div>
 									</div>
-								</div>
-								<div class="sbi_item sbi_type_video sbi_new sbi_transition" id="sbi_18349676533159869"
-									data-date="1745677251">
-									<div class="sbi_photo_wrap">
-										<a class="sbi_photo" href="https://www.instagram.com/reel/DI6aLS9RqI5/"
-											target="_blank" rel="noopener nofollow"
-											data-full-res="https://scontent-ord5-3.cdninstagram.com/v/t51.71878-15/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=110&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&#038;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-3.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&#038;oe=68208C51"
-											data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;}">
-											<span class="sbi-screenreader">A stunning celebration at Current!
-												It was such a j</span>
-											<svg style="color: rgba(255,255,255,1)"
-												class="svg-inline--fa fa-play fa-w-14 sbi_playbtn" aria-label="Play"
-												aria-hidden="true" data-fa-processed="" data-prefix="fa"
-												data-icon="play" role="presentation" xmlns="http://www.w3.org/2000/svg"
-												viewBox="0 0 448 512">
-												<path fill="currentColor"
-													d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
-												</path>
-											</svg> <img
-												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
-												alt="A stunning celebration at Current!
+									<div class="sbi_item sbi_type_video sbi_new sbi_transition"
+										id="sbi_18349676533159869" data-date="1745677251">
+										<div class="sbi_photo_wrap">
+											<a class="sbi_photo" href="https://www.instagram.com/reel/DI6aLS9RqI5/"
+												target="_blank" rel="noopener nofollow"
+												data-full-res="https://scontent-ord5-3.cdninstagram.com/v/t51.71878-15/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=110&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&#038;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-3.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&#038;oe=68208C51"
+												data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.71878-15\/491742922_1494205994872850_8098049729151902568_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=x2FaAWHVZlsQ7kNvwHJpFfI&amp;_nc_oc=AdkWvzd0h7j9WiL_8weNJa1YFPIE4fhobiyFYO5JwaHD-VMbW6LXxF0hOMg6iOBcbZQ&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfIDquKTrvYR5tETiXOLUFINSI_Subh8vBgNQqj34bVBRg&amp;oe=68208C51&quot;}">
+												<span class="sbi-screenreader">A stunning celebration at Current!
+													It was such a j</span>
+												<svg style="color: rgba(255,255,255,1)"
+													class="svg-inline--fa fa-play fa-w-14 sbi_playbtn" aria-label="Play"
+													aria-hidden="true" data-fa-processed="" data-prefix="fa"
+													data-icon="play" role="presentation"
+													xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+													<path fill="currentColor"
+														d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
+													</path>
+												</svg> <img
+													src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
+													alt="A stunning celebration at Current!
 It was such a joy to host @nelee_ and @david_jay620’s beautiful wedding, brought to life by an incredible team of partners.
 Congratulations to the newlyweds!
 
@@ -1310,9 +1457,9 @@ Floral &amp; Rentals: @divablooms @divabloomsllc
 Entertainment: @iknowmikemusic
 Candlelight: @elitecandlelight
 Venue: @thepiersixtycollection – Curr" data-src="https://piersixty.com/wp-content/plugins/instagram-feed/img/placeholder.png"
-												decoding="async" class="lazyload" data-eio-rwidth="1000"
-												data-eio-rheight="560"><noscript><img
-													src="wp-content/plugins/instagram-feed/img/placeholder.png" alt="A stunning celebration at Current!
+													decoding="async" class="lazyload" data-eio-rwidth="1000"
+													data-eio-rheight="560"><noscript><img
+														src="wp-content/plugins/instagram-feed/img/placeholder.png" alt="A stunning celebration at Current!
 It was such a joy to host @nelee_ and @david_jay620’s beautiful wedding, brought to life by an incredible team of partners.
 Congratulations to the newlyweds!
 
@@ -1322,97 +1469,98 @@ Floral &amp; Rentals: @divablooms @divabloomsllc
 Entertainment: @iknowmikemusic
 Candlelight: @elitecandlelight
 Venue: @thepiersixtycollection – Curr" data-eio="l"></noscript>
-										</a>
+											</a>
+										</div>
 									</div>
-								</div>
-								<div class="sbi_item sbi_type_carousel sbi_new sbi_transition"
-									id="sbi_17988190862801836" data-date="1744631804">
-									<div class="sbi_photo_wrap">
-										<a class="sbi_photo" href="https://www.instagram.com/p/DIbRUzpx9lA/"
-											target="_blank" rel="noopener nofollow"
-											data-full-res="https://scontent-ord5-3.cdninstagram.com/v/t51.75761-15/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=100&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&#038;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-3.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&#038;oe=68209159"
-											data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;}">
-											<span class="sbi-screenreader">A night of sparkle and celebration at the
-												Hudson R</span>
-											<svg class="svg-inline--fa fa-clone fa-w-16 sbi_lightbox_carousel_icon"
-												aria-hidden="true" aria-label="Clone" data-fa-proƒcessed=""
-												data-prefix="far" data-icon="clone" role="img"
-												xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-												<path fill="currentColor"
-													d="M464 0H144c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h320c26.51 0 48-21.49 48-48v-48h48c26.51 0 48-21.49 48-48V48c0-26.51-21.49-48-48-48zM362 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h42v224c0 26.51 21.49 48 48 48h224v42a6 6 0 0 1-6 6zm96-96H150a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h308a6 6 0 0 1 6 6v308a6 6 0 0 1-6 6z">
-												</path>
-											</svg> <img
-												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
-												alt="A night of sparkle and celebration at the Hudson River Park Friends’ Gala!
+									<div class="sbi_item sbi_type_carousel sbi_new sbi_transition"
+										id="sbi_17988190862801836" data-date="1744631804">
+										<div class="sbi_photo_wrap">
+											<a class="sbi_photo" href="https://www.instagram.com/p/DIbRUzpx9lA/"
+												target="_blank" rel="noopener nofollow"
+												data-full-res="https://scontent-ord5-3.cdninstagram.com/v/t51.75761-15/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=100&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&#038;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-3.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&#038;oe=68209159"
+												data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-3.cdninstagram.com\/v\/t51.75761-15\/491443287_18497002729050366_4298183940048120576_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=-UfXP8CwI2kQ7kNvwGZwZjE&amp;_nc_oc=AdkpBlyd8kSIjCIy8K_1Tkh_sQOCZ96ZBt2svivURPKEc5IbKn0bhTgovQj5petdp2A&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfKBU8E4pBOsyxuj3TMZ4as7c82rr-wMUaoaurDFHIv1QQ&amp;oe=68209159&quot;}">
+												<span class="sbi-screenreader">A night of sparkle and celebration at the
+													Hudson R</span>
+												<svg class="svg-inline--fa fa-clone fa-w-16 sbi_lightbox_carousel_icon"
+													aria-hidden="true" aria-label="Clone" data-fa-proƒcessed=""
+													data-prefix="far" data-icon="clone" role="img"
+													xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+													<path fill="currentColor"
+														d="M464 0H144c-26.51 0-48 21.49-48 48v48H48c-26.51 0-48 21.49-48 48v320c0 26.51 21.49 48 48 48h320c26.51 0 48-21.49 48-48v-48h48c26.51 0 48-21.49 48-48V48c0-26.51-21.49-48-48-48zM362 464H54a6 6 0 0 1-6-6V150a6 6 0 0 1 6-6h42v224c0 26.51 21.49 48 48 48h224v42a6 6 0 0 1-6 6zm96-96H150a6 6 0 0 1-6-6V54a6 6 0 0 1 6-6h308a6 6 0 0 1 6 6v308a6 6 0 0 1-6 6z">
+													</path>
+												</svg> <img
+													src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
+													alt="A night of sparkle and celebration at the Hudson River Park Friends’ Gala!
 We were honored to welcome over 650 guests in support of Hudson River Park, raising an incredible $2.6 million. From a seamless guest experience to an unforgettable evening filled with energy and connection, it was a night to remember.
 
 Thank you to our partners at @stampevent for helping us make it all shine!
 
 #HudsonRiverPark #HudsonRiverParkFriends" data-src="https://piersixty.com/wp-content/plugins/instagram-feed/img/placeholder.png"
-												decoding="async" class="lazyload" data-eio-rwidth="1000"
-												data-eio-rheight="560"><noscript><img
-													src="wp-content/plugins/instagram-feed/img/placeholder.png" alt="A night of sparkle and celebration at the Hudson River Park Friends’ Gala!
+													decoding="async" class="lazyload" data-eio-rwidth="1000"
+													data-eio-rheight="560"><noscript><img
+														src="wp-content/plugins/instagram-feed/img/placeholder.png" alt="A night of sparkle and celebration at the Hudson River Park Friends’ Gala!
 We were honored to welcome over 650 guests in support of Hudson River Park, raising an incredible $2.6 million. From a seamless guest experience to an unforgettable evening filled with energy and connection, it was a night to remember.
 
 Thank you to our partners at @stampevent for helping us make it all shine!
 
 #HudsonRiverPark #HudsonRiverParkFriends" data-eio="l"></noscript>
-										</a>
+											</a>
+										</div>
 									</div>
-								</div>
-								<div class="sbi_item sbi_type_video sbi_new sbi_transition" id="sbi_17984466158810069"
-									data-date="1744473016">
-									<div class="sbi_photo_wrap">
-										<a class="sbi_photo" href="https://www.instagram.com/reel/DIWibFHRV_Y/"
-											target="_blank" rel="noopener nofollow"
-											data-full-res="https://scontent-ord5-1.cdninstagram.com/v/t51.75761-15/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=108&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&#038;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-1.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&#038;oe=68207F58"
-											data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;}">
-											<span class="sbi-screenreader">A picture-perfect day, captured against the
-												iconic</span>
-											<svg style="color: rgba(255,255,255,1)"
-												class="svg-inline--fa fa-play fa-w-14 sbi_playbtn" aria-label="Play"
-												aria-hidden="true" data-fa-processed="" data-prefix="fa"
-												data-icon="play" role="presentation" xmlns="http://www.w3.org/2000/svg"
-												viewBox="0 0 448 512">
-												<path fill="currentColor"
-													d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
-												</path>
-											</svg> <img
-												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
-												alt="A picture-perfect day, captured against the iconic New York City skyline.
+									<div class="sbi_item sbi_type_video sbi_new sbi_transition"
+										id="sbi_17984466158810069" data-date="1744473016">
+										<div class="sbi_photo_wrap">
+											<a class="sbi_photo" href="https://www.instagram.com/reel/DIWibFHRV_Y/"
+												target="_blank" rel="noopener nofollow"
+												data-full-res="https://scontent-ord5-1.cdninstagram.com/v/t51.75761-15/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&#038;_nc_cat=108&#038;ccb=7-5&#038;_nc_sid=18de74&#038;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&#038;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&#038;_nc_zt=23&#038;_nc_ht=scontent-ord5-1.cdninstagram.com&#038;edm=AM6HXa8EAAAA&#038;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&#038;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&#038;oe=68207F58"
+												data-img-src-set="{&quot;d&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;,&quot;150&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;,&quot;320&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;,&quot;640&quot;:&quot;https:\/\/scontent-ord5-1.cdninstagram.com\/v\/t51.75761-15\/491444625_18496618504050366_4345959998581741479_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;_nc_ohc=wJf_vwI9Z20Q7kNvwEu7wWU&amp;_nc_oc=AdnBOwe-RzU_nB_rISfw2iFit1xFzDtKgXtg4rwnWtaBDm4Az79WlcYXjw6IPohoj5g&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.cdninstagram.com&amp;edm=AM6HXa8EAAAA&amp;_nc_gid=GiK_N3RpjhKPW-4dumUDFA&amp;oh=00_AfJ_Et77GOvshBn2OundvvlXoQcwHoXj0Q8gWSW8Wb4pbA&amp;oe=68207F58&quot;}">
+												<span class="sbi-screenreader">A picture-perfect day, captured against
+													the
+													iconic</span>
+												<svg style="color: rgba(255,255,255,1)"
+													class="svg-inline--fa fa-play fa-w-14 sbi_playbtn" aria-label="Play"
+													aria-hidden="true" data-fa-processed="" data-prefix="fa"
+													data-icon="play" role="presentation"
+													xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+													<path fill="currentColor"
+														d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
+													</path>
+												</svg> <img
+													src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAIwAQAAAAA9wny/AAAAAnRSTlMAAHaTzTgAAABbSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4GhOvAAGIKt1oAAAAAElFTkSuQmCC"
+													alt="A picture-perfect day, captured against the iconic New York City skyline.
 Congratulations to @mandanguyen09 and @gh0s7 on a celebration filled with love, laughter, and unforgettable moments.
 Thank you to this incredible team for bringing the vision to life:
 Wedding Coordinator: @what_plee_saw
 Venue: @thepiersixtycollection
 Photography &amp; Videography: @black.frame.photos
 Hair &amp; Makeup: @makeupandhairbyjen &amp; @minxaesthetic"
-												data-src="https://piersixty.com/wp-content/plugins/instagram-feed/img/placeholder.png"
-												decoding="async" class="lazyload" data-eio-rwidth="1000"
-												data-eio-rheight="560"><noscript><img
-													src="wp-content/plugins/instagram-feed/img/placeholder.png" alt="A picture-perfect day, captured against the iconic New York City skyline.
+													data-src="https://piersixty.com/wp-content/plugins/instagram-feed/img/placeholder.png"
+													decoding="async" class="lazyload" data-eio-rwidth="1000"
+													data-eio-rheight="560"><noscript><img
+														src="wp-content/plugins/instagram-feed/img/placeholder.png" alt="A picture-perfect day, captured against the iconic New York City skyline.
 Congratulations to @mandanguyen09 and @gh0s7 on a celebration filled with love, laughter, and unforgettable moments.
 Thank you to this incredible team for bringing the vision to life:
 Wedding Coordinator: @what_plee_saw
 Venue: @thepiersixtycollection
 Photography &amp; Videography: @black.frame.photos
 Hair &amp; Makeup: @makeupandhairbyjen &amp; @minxaesthetic" data-eio="l"></noscript>
-										</a>
+											</a>
+										</div>
 									</div>
 								</div>
+
+								<div id="sbi_load">
+
+
+
+								</div>
+
+								<span class="sbi_resized_image_data" data-feed-id="*2"
+									data-resized="{&quot;17984466158810069&quot;:{&quot;id&quot;:&quot;491444625_18496618504050366_4345959998581741479_n&quot;,&quot;ratio&quot;:&quot;0.56&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;},&quot;17988190862801836&quot;:{&quot;id&quot;:&quot;491443287_18497002729050366_4298183940048120576_n&quot;,&quot;ratio&quot;:&quot;1.50&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;},&quot;18349676533159869&quot;:{&quot;id&quot;:&quot;491742922_1494205994872850_8098049729151902568_n&quot;,&quot;ratio&quot;:&quot;0.56&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;},&quot;18093851449569820&quot;:{&quot;id&quot;:&quot;494763660_18500390908050366_4332354926662433585_n&quot;,&quot;ratio&quot;:&quot;0.86&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;}}">
+								</span>
 							</div>
 
-							<div id="sbi_load">
-
-
-
-							</div>
-
-							<span class="sbi_resized_image_data" data-feed-id="*2"
-								data-resized="{&quot;17984466158810069&quot;:{&quot;id&quot;:&quot;491444625_18496618504050366_4345959998581741479_n&quot;,&quot;ratio&quot;:&quot;0.56&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;},&quot;17988190862801836&quot;:{&quot;id&quot;:&quot;491443287_18497002729050366_4298183940048120576_n&quot;,&quot;ratio&quot;:&quot;1.50&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;},&quot;18349676533159869&quot;:{&quot;id&quot;:&quot;491742922_1494205994872850_8098049729151902568_n&quot;,&quot;ratio&quot;:&quot;0.56&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;},&quot;18093851449569820&quot;:{&quot;id&quot;:&quot;494763660_18500390908050366_4332354926662433585_n&quot;,&quot;ratio&quot;:&quot;0.86&quot;,&quot;sizes&quot;:{&quot;full&quot;:640,&quot;low&quot;:320,&quot;thumb&quot;:150},&quot;extension&quot;:&quot;.webp&quot;}}">
-							</span>
-						</div>
-
-					</section>
+						</section>
 
 				</main><!-- #main -->
 			</div><!-- #primary -->
