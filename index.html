@@ -912,55 +912,298 @@
 				<main id="main" class="site-main">
 
 					<h1 class="page-title">Home</h1>
-					<section id="home-video">
-						<video autoplay loop muted crossorigin="anonymous">
-							<source
-								src="https://player.vimeo.com/progressive_redirect/playback/1058397866/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=a5d28e4c8817c8aae2ac8896db1fb6c8d5062676f2aa4ad905e0fe62f9e12dae&amp;user_id=157023622"
-								type="video/mp4">
-						</video>
-						<div id="home-video__caption" aria-label="video captions">Music Playing</div>
-						<div id="home-video__controls">
-							<button id="home-video__playpause">
-								<img class="pause-icon lazyload"
-									src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-									alt="pause icon"
-									data-src="https://piersixty.com/wp-content/themes/pier-sixty/img/icons/pause.svg"
-									decoding="async" /><noscript><img class="pause-icon"
-										src="wp-content/themes/pier-sixty/img/icons/pause.svg" alt="pause icon"
-										data-eio="l" /></noscript>
-								<img class="play-icon lazyload"
-									src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-									alt="play icon"
-									data-src="https://piersixty.com/wp-content/themes/pier-sixty/img/icons/arrow.svg"
-									decoding="async" /><noscript><img class="play-icon"
-										src="wp-content/themes/pier-sixty/img/icons/arrow.svg" alt="play icon"
-										data-eio="l" /></noscript>
-							</button>
-							<button id="home-video__cc"><img
-									src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-									alt="closed captions icon"
-									data-src="https://piersixty.com/wp-content/themes/pier-sixty/img/icons/caption.svg"
-									decoding="async" class="lazyload" /><noscript><img
-										src="wp-content/themes/pier-sixty/img/icons/caption.svg"
-										alt="closed captions icon" data-eio="l" /></noscript></button>
-							<button id="home-video__mute">
-								<img class="mute-icon lazyload"
-									src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-									alt="mute icon"
-									data-src="https://piersixty.com/wp-content/themes/pier-sixty/img/icons/volume-mute-solid.svg"
-									decoding="async" /><noscript><img class="mute-icon"
-										src="wp-content/themes/pier-sixty/img/icons/volume-mute-solid.svg"
-										alt="mute icon" data-eio="l" /></noscript>
-								<img class="unmute-icon lazyload"
-									src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-									alt="unmute icon"
-									data-src="https://piersixty.com/wp-content/themes/pier-sixty/img/icons/volume-solid.svg"
-									decoding="async" /><noscript><img class="unmute-icon"
-										src="wp-content/themes/pier-sixty/img/icons/volume-solid.svg" alt="unmute icon"
-										data-eio="l" /></noscript>
-							</button>
-						</div>
-					</section>
+					<!DOCTYPE html>
+					<html lang="en">
+
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<title>Mobile-First Image Carousel</title>
+						<style>
+							* {
+								margin: 0;
+								padding: 0;
+								box-sizing: border-box;
+							}
+
+							body {
+								font-family: Arial, sans-serif;
+							}
+
+							#hero-carousel {
+								position: relative;
+								width: 100%;
+								height: 400px;
+								overflow: hidden;
+								background: #333;
+								margin: 0 auto;
+							}
+
+							.image-slider {
+								position: relative;
+								width: 100%;
+								height: 100%;
+								display: flex;
+								transition: transform 0.8s ease-in-out;
+							}
+
+							.slide-item {
+								min-width: 100%;
+								height: 100%;
+								position: relative;
+								flex-shrink: 0;
+							}
+
+							.slide-item img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+								display: block;
+								background-color: #ddd;
+							}
+
+							/* Indicators */
+							.carousel-indicators {
+								position: absolute;
+								bottom: 20px;
+								left: 50%;
+								transform: translateX(-50%);
+								display: flex;
+								gap: 8px;
+								z-index: 10;
+							}
+
+							.indicator {
+								width: 12px;
+								height: 12px;
+								border-radius: 50%;
+								background: rgba(255, 255, 255, 0.5);
+								cursor: pointer;
+								transition: background 0.3s;
+							}
+
+							.indicator.active {
+								background: rgba(255, 255, 255, 0.9);
+							}
+
+							/* Desktop styles */
+							@media (min-width: 769px) {
+								#hero-carousel {
+									height: 600px;
+								}
+							}
+
+							@media (min-width: 1200px) {
+								#hero-carousel {
+									height: 80vh;
+									max-height: 800px;
+								}
+							}
+						</style>
+					</head>
+
+					<body>
+						<section id="hero-carousel">
+							<div class="image-slider" id="imageSlider">
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -1.jpg" alt="Cocktail Hour on the veranda"
+										loading="eager">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -2.jpg" alt="Dinner by the beach" loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -3.jpg" alt="Elegant venue setup" loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -4.jpg" alt="Beautiful ceremony space"
+										loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -5.jpg" alt="Sunset views" loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -6.jpg" alt="Reception dining" loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -7.jpg" alt="Waterfront celebration"
+										loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -8.jpg" alt="Outdoor festivities" loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -9.jpg" alt="Dancing under stars" loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -10.jpg" alt="Romantic atmosphere"
+										loading="lazy">
+								</div>
+								<div class="slide-item">
+									<img src="jpeg/JPEG/Carousel image -11.jpg" alt="Perfect celebration"
+										loading="lazy">
+								</div>
+							</div>
+
+							<div class="carousel-indicators" id="indicators">
+								<!-- Indicators will be generated by JavaScript -->
+							</div>
+						</section>
+
+						<script>
+							class MobileCarousel {
+								constructor() {
+									this.slider = document.getElementById('imageSlider');
+									this.slides = document.querySelectorAll('.slide-item');
+									this.indicators = document.getElementById('indicators');
+									this.currentIndex = 0;
+									this.totalSlides = this.slides.length;
+									this.autoplayInterval = null;
+									this.isTransitioning = false;
+
+									this.init();
+								}
+
+								init() {
+									this.createIndicators();
+									this.startAutoplay();
+									this.setupImageErrorHandling();
+
+									// Touch/swipe support for mobile
+									this.setupTouchEvents();
+
+									// Pause on hover for desktop
+									const carousel = document.getElementById('hero-carousel');
+									carousel.addEventListener('mouseenter', () => this.pauseAutoplay());
+									carousel.addEventListener('mouseleave', () => this.startAutoplay());
+
+									console.log('Carousel initialized with', this.totalSlides, 'slides');
+								}
+
+								createIndicators() {
+									this.indicators.innerHTML = '';
+									for (let i = 0; i < this.totalSlides; i++) {
+										const indicator = document.createElement('div');
+										indicator.classList.add('indicator');
+										if (i === 0) indicator.classList.add('active');
+										indicator.addEventListener('click', () => this.goToSlide(i));
+										this.indicators.appendChild(indicator);
+									}
+								}
+
+								updateDebugInfo() {
+									// Debug info removed
+								}
+
+								goToSlide(index) {
+									if (this.isTransitioning) return;
+
+									this.isTransitioning = true;
+									this.currentIndex = index;
+
+									const translateX = -this.currentIndex * 100;
+									this.slider.style.transform = `translateX(${translateX}%)`;
+
+									this.updateIndicators();
+
+									setTimeout(() => {
+										this.isTransitioning = false;
+									}, 800);
+								}
+
+								nextSlide() {
+									const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+									this.goToSlide(nextIndex);
+								}
+
+								updateIndicators() {
+									const indicators = document.querySelectorAll('.indicator');
+									indicators.forEach((indicator, index) => {
+										indicator.classList.toggle('active', index === this.currentIndex);
+									});
+								}
+
+								startAutoplay() {
+									this.pauseAutoplay();
+									this.autoplayInterval = setInterval(() => {
+										this.nextSlide();
+									}, 3000);
+								}
+
+								pauseAutoplay() {
+									if (this.autoplayInterval) {
+										clearInterval(this.autoplayInterval);
+										this.autoplayInterval = null;
+									}
+								}
+
+								setupImageErrorHandling() {
+									this.slides.forEach((slide, index) => {
+										const img = slide.querySelector('img');
+
+										img.addEventListener('load', () => {
+											console.log(`Image ${index + 1} loaded successfully`);
+										});
+
+										img.addEventListener('error', () => {
+											console.error(`Failed to load image ${index + 1}: ${img.src}`);
+											slide.style.background = 'linear-gradient(45deg, #f0f0f0, #e0e0e0)';
+											slide.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:16px;">Image ${index + 1} not found</div>`;
+										});
+									});
+								}
+
+								setupTouchEvents() {
+									let startX = 0;
+									let endX = 0;
+
+									this.slider.addEventListener('touchstart', (e) => {
+										startX = e.touches[0].clientX;
+									});
+
+									this.slider.addEventListener('touchend', (e) => {
+										endX = e.changedTouches[0].clientX;
+										this.handleSwipe();
+									});
+
+									this.slider.addEventListener('touchmove', (e) => {
+										e.preventDefault(); // Prevent scrolling
+									});
+								}
+
+								handleSwipe() {
+									const threshold = 50;
+									const diff = startX - endX;
+
+									if (Math.abs(diff) > threshold) {
+										if (diff > 0) {
+											// Swipe left - next slide
+											this.nextSlide();
+										} else {
+											// Swipe right - previous slide
+											const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+											this.goToSlide(prevIndex);
+										}
+									}
+								}
+							}
+
+							// Initialize carousel when DOM is ready
+							document.addEventListener('DOMContentLoaded', () => {
+								new MobileCarousel();
+							});
+
+							// Update debug info on resize
+							window.addEventListener('resize', () => {
+								const carousel = window.carouselInstance;
+								if (carousel) {
+									carousel.updateDebugInfo();
+								}
+							});
+						</script>
+					</body>
+
+					</html>
 					<!DOCTYPE html>
 					<html>
 
